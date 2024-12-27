@@ -18,6 +18,7 @@ const App = () => {
         setData(response.data); // Store the response data
       } catch (err) {
         setError("failed to fetch data");
+        alert("Failed to fetch data"); // Alert on failure
         console.error("Error fetching data:", err);
       }
     };
@@ -37,6 +38,8 @@ const App = () => {
   const handleNext = () => {
     if (currentPage < totalPages) {
       setCurrentPage((prevPage) => prevPage + 1);
+    } else if (currentPage === totalPages) {
+      setCurrentPage(1); // Navigate to the first page from the last page
     }
   };
 
@@ -95,7 +98,6 @@ const App = () => {
         </span>
         <button
           onClick={handleNext}
-          disabled={currentPage === totalPages}
           className="pagination-button"
         >
           Next
